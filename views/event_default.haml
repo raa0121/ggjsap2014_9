@@ -16,7 +16,7 @@
             .col-lg-2
               %label.col-lg-6.control-label{ for: 'number' } 数字
               .col-lg-6
-                %select.form-control#number{ type: 'text', data: { elm: "number-#{i}" } }
+                %select.form-control#number{ name: 'hogeinput', type: 'text', data: { elm: "number-#{i}" } }
                   - %w(A 2 3 4 5 6 7 8 9 10 J Q K).each do |e|
                     - if e == data['number']
                       %option{:value =>e, :selected =>e} #{data['number']}
