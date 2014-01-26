@@ -14,31 +14,30 @@
           .form-group{:id => 'download'}
             .download
               %button.btn.btn-primary.btn-lg.btn-block{ type: 'button',  value: 'download' } Download 
-        - (0..23).zip(@default[0..23]).each do |i,d|
-          - data = d
-            .form-group{:id => "#{i}"}
-              .col-lg-2
-                %label.col-lg-6.control-label{ for: 'number' } 数字
-                .col-lg-6
-                  %select.form-control#number{ type: 'text', data: { elm: "number-#{i}" } }
-                    - %w(A 2 3 4 5 6 7 8 9 10 J Q K).each do |e|
-                      %option{:value =>e, :selected => e} #{data['number']}
-              .col-lg-2
-                %label.col-lg-6.control-label{ for: "sute-#{i}" } 記号
-                .col-lg-6
-                  %select.form-control#number{ type: 'text', data: { elm: "sute-#{i}" } }
-                    - %w(♠ ♣ ♡ ♢).zip(%w(spade clover hurt diamond)).each do |e,s|
-                      %option{:value =>s, :selected => s} #{e if s == data['sute']}
-              .col-lg-5
-                %label.col-lg-3.control-label{ for: 'ftext' } テキスト
-                .col-lg-9
-                .input-group
-                  %textarea.form-control#ftext{ rows: 1, data: { elm: "ftext-#{i}" } } #{data['text']}
-              .col-lg-3
-                %label.col-lg-4.control-label{ for: 'image' } 画像
-                .col-lg-8
-                .input-group
-                  %input.form-control#image{ type: 'file', data: { elm: "image-#{i}" } }
+        - (0..23).zip(@default[0..23]).each do |i,data|
+          .form-group{:id => "#{i}"}
+            .col-lg-2
+              %label.col-lg-6.control-label{ for: 'number' } 数字
+              .col-lg-6
+                %select.form-control#number{ type: 'text', data: { elm: "number-#{i}" } }
+                  - %w(A 2 3 4 5 6 7 8 9 10 J Q K).each do |e|
+                    %option{:value =>e, :selected => e} #{data['number']}
+            .col-lg-2
+              %label.col-lg-6.control-label{ for: "sute-#{i}" } 記号
+              .col-lg-6
+                %select.form-control#number{ type: 'text', data: { elm: "sute-#{i}" } }
+                  - %w(♠ ♣ ♡ ♢).zip(%w(spade clover hurt diamond)).each do |e,s|
+                    %option{:value =>s, :selected => s} #{e if s == data['sute']}
+            .col-lg-5
+              %label.col-lg-3.control-label{ for: 'ftext' } テキスト
+              .col-lg-9
+              .input-group
+                %textarea.form-control#ftext{ rows: 1, data: { elm: "ftext-#{i}" } } #{data['text']}
+            .col-lg-3
+              %label.col-lg-4.control-label{ for: 'image' } 画像
+              .col-lg-8
+              .input-group
+                %input.form-control#image{ type: 'file', data: { elm: "image-#{i}" } }
         .form-group{:id => 'jorker'}
           .col-lg-4
             %label.col-lg-12.control-label{ for: 'number' } ジョーカー
