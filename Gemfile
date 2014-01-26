@@ -6,3 +6,7 @@ gem 'haml'
 gem 'less'
 gem 'therubyracer'
 gem 'rerun'
+
+group :development do
+  gem 'pry'
+end

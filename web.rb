@@ -2,6 +2,7 @@
 
 require 'bundler'
 Bundler.require
+require 'pry'
 load 'event.rb'
 
 set :bind, '0.0.0.0'
@@ -53,28 +54,7 @@ post '/event/generate' do
   res = {
     status: 'error'
   }
-
-  [request.body,
-  request.scheme,
-  request.script_name,
-  request.path_info,
-  request.port,
-  request.request_method,
-  request.query_string,
-  request.content_length,
-  request.media_type,
-  request.host,
-  request.get?,
-  request.form_data?,
-  request.referer,
-  request.user_agent,
-  request.cookies,
-  request.xhr?,
-  request.url,
-  request.path,
-  request.ip,
-  request.secure?,
-  request.env].join("\n") + "\n\n" + params.inspect
-  
+  binding.pry 
+ 
 end
 
