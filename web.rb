@@ -3,6 +3,7 @@
 require 'bundler'
 Bundler.require
 load 'event.rb'
+require 'pry'
 
 set :bind, '0.0.0.0'
 set :port, '5000'
@@ -53,6 +54,7 @@ post '/event/generate' do
   res = {
     status: 'error'
   }
+  binding.pry
 
   request.body
 end
