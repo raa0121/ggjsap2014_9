@@ -14,8 +14,7 @@
           .form-group{:id => 'download'}
             .download
               %button.btn.btn-primary.btn-lg.btn-block{ type: 'button',  value: 'download' } Download 
-        - (0..23).zip(@default[0..23]).each do |i,d|
-          - data = d
+        - (0..23).zip(@default[0..23]).each do |i,data|
           .form-group{:id => "#{i}"}
             .col-lg-2
               %label.col-lg-6.control-label{ for: 'number' } 数字
