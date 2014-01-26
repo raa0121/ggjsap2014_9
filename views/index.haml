@@ -1,0 +1,93 @@
+.container
+  .page-header
+     %h1 カード1枚ジェネレーター
+
+    .row
+      .col-md-6
+        %form.form-horizontal{ role: 'form' }
+          .form-group
+            %label.col-lg-2.control-label{ for: 'design' } 種類
+            .col-lg-10
+              %select.form-control#design{ type: 'text', data: { elm: 'number' }}
+                %option 手札カード
+                %option フィールドカード
+                %option ステータスカード
+                %option 魔王カード
+                %option Cカード
+                %option Dカード
+          .form-group
+            %label.col-lg-2.control-label{ for: 'number' } 数字
+            .col-lg-10
+              %select.form-control#number{ type: 'text', data: { elm: 'number' } }
+                - %w(A 2 3 4 5 6 7 8 9 10 J Q K).each do |e|
+                  %option{:value =>e, :selected => e} #{e}
+          .form-group
+            %label.col-lg-2.control-label{ for: 'direction' } 方向
+            .col-lg-10
+              %select.form-control#direction{ type: 'text', data: { elm: 'direction' } }
+                %option ←
+                %option ↓
+                %option ↑
+                %option →
+          .form-group
+            %label.col-lg-2.control-label{ for: 'image' } 画像
+            .col-lg-10
+              .input-group
+                %input.form-control#image{ type: 'file', data: { elm: 'image' } }
+      .col-md-6
+        .preview
+          .card
+            .card-element.elm-number 
+            .card-element.elm-direction
+            .card-element.elm-image
+          .download
+            %button.btn.btn-primary.btn-lg.btn-block{ type: 'button' } Download ( not works yet )
+    
+
+:css
+  .download{
+    padding-top: 20px;
+  }
+  .preview{
+    border: 2px solid #ccc;
+    width: 272px;
+  }
+  .card{
+    /* background: #fafafa url('/resources/design2_preview.png') no-repeat left top; */
+    height: 448px;
+    width: 272px;
+    background-size: contain;
+    position: relative;
+  }
+  .preview .border{
+  }
+  .preview .card-element{
+    position: absolute;
+    left: 20px;
+  }
+  .elm-number { top: 20px; font-size: 40px; line-height: 1; }
+  .elm-direction { top: 20px; font-size: 40px; line-height: 1; }
+
+:javascript
+  var appends = {
+    'number': '',
+    'direction': '',
+    'image': '',
+  }
+  $(function(){
+    var update_preview = function(){
+      console.log('hi');
+      elm_name = $(this).attr('data-elm');
+      if(elm_name){
+        elm_value = $(this).val();
+        if(elm_value){
+          $('.elm-' + elm_name).html(appends[elm_name] + elm_value);
+        }else{
+          $('.elm-' + elm_name).html('');
+        }
+      }
+    }
+    $('input').each(function(){
+      $(this).bind('keyup', update_preview)
+    });
+  });

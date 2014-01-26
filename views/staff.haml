@@ -1,0 +1,97 @@
+.container
+  .page-header
+    %h2 スタッフ(敬称略・順不同)
+
+    .row
+      .col-md-12
+        %h3 リーダー(という名の連絡係)
+        %p 真希
+        %h3 メンバー
+        %p
+        hak 
+        %br
+        かんこ 
+        %br
+        らぁ 
+        %br 
+        ゆうき 
+        %h3 スペシャルサンクス(テストプレイに参加していただいたみなさん)
+        %p
+        Surpent
+        %br
+        firo
+        %br
+        和牛先生
+        %br
+        プリニー
+        %br
+        山田
+        %br
+        ジョージ
+        %br
+        チザヤ
+        %br
+        geekdrums
+        %br
+        TTN TAWASi
+        %br
+        meyco
+        %br
+        まんじゅ（´ん｀）
+        %br
+        てとり
+        %br
+        きなここ
+        %br
+        カキピーホムレスねむ。
+:css
+  .container{
+    max-width: none !important;
+    width: 1280px;
+  }
+ 
+  .preview{
+    border: 2px solid #ccc;
+    width: 272px;
+  }
+  .card{
+    /* background: #fafafa url('/resources/design2_preview.png') no-repeat left top; */
+    height: 448px;
+    width: 272px;
+    background-size: contain;
+    position: relative;
+  }
+  .preview .border{
+  }
+  .preview .card-element{
+    position: absolute;
+    left: 20px;
+  }
+  .elm-number { top: 20px; font-size: 40px; line-height: 1; }
+  .elm-direction { top: 20px; font-size: 40px; line-height: 1; }
+  #ftext { width: 25em; }
+  #image { border: 0px; }
+
+:javascript
+  var appends = {
+    'number': '',
+    'direction': '',
+    'image': '',
+  }
+  $(function(){
+    var update_preview = function(){
+      console.log('hi');
+      elm_name = $(this).attr('data-elm');
+      if(elm_name){
+        elm_value = $(this).val();
+        if(elm_value){
+          $('.elm-' + elm_name).html(appends[elm_name] + elm_value);
+        }else{
+          $('.elm-' + elm_name).html('');
+        }
+      }
+    }
+    $('input').each(function(){
+      $(this).bind('keyup', update_preview)
+    });
+  });
