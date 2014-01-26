@@ -4,16 +4,13 @@
 
     .row
       .col-md-12
-        .col-lg-9
+        .col-lg-8
+        .col-lg-4
           %form.form-horizontal{ role: 'form', action: '/event/default', method: 'post'}  
             .form-group{:id => 'default'}
               .default
                 %button.btn.btn-primary.btn-lg.btn-block{ type: 'submit', value: 'default' } デフォルトの設定をロードする
       %form.form-horizontal{ role: 'form', action: '/event/generate', method: 'post'}  
-        .col-lg-3
-          .form-group{:id => 'download'}
-            .download
-              %button.btn.btn-primary.btn-lg.btn-block{ type: 'submit',  value: 'download' } Download 
         - (0..23).zip(@default[0..23]).each do |i,data|
           .form-group{:id => "#{i}"}
             .col-lg-2
@@ -57,6 +54,11 @@
             .col-lg-8
             .input-group
               %input.form-control#image{ type: 'file', data: { elm: 'image-joker' } }
+        .col-lg-3
+          .form-group{:id => 'download'}
+            .download
+              %button.btn.btn-primary.btn-lg.btn-block{ type: 'submit',  value: 'download' } Download 
+
 :css
   .container{
     max-width: none !important;
