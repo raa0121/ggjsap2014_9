@@ -22,6 +22,19 @@ get '/staff' do
   haml :staff
 end
 
+get '/event/default' do
+  res = { status: 'error' }
+  begin
+    res[:data] = JSON.parse(open("./public/resources/default.json").read.force_encoding('UTF-8'))
+    res[:status] = 'ok'
+  rescue
+    res[:message] = 'JSONファイルが無いよ'
+  end
+  @default = res[:data]['cards']
+  haml :event_default
+end
+
+
 post '/event/default' do
   request.body.rewind
   res = { status: 'error' }
@@ -41,24 +54,6 @@ post '/event/generate' do
     status: 'error'
   }
 
-  if params[:download]
-    cs = Event.new params[:download]
-    begin
-      cards = cs.getCardsData
-      if result_path
-        gyazo = Gyazo.new
-        gyazo_url = gyazo.upload result_path
-        res[:status] = 'ok'
-        res[:url] = gyazo_url
-      else
-        res[:message] = "画像を取得できなかった"
-      end
-    rescue
-      res[:message] = "画像の合成がむずかしかった"
-    end
-  else
-    res[:message] = "画像を指定されてない気がする"
-  end
-  res.to_json
+  request.body
 end
 
